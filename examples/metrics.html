@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Performance Metrics Dashboard</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	
+	
+	
+    <script>
+        $('body').ready(function() {
+			
+            // preload iframe
+            var iframe = document.getElementById('show').src = 'https://public.tableau.com/views/Test1_15610603304450/Sheet1?:embed=true:showVizHome=no#7.html';
+
+            $('.showbases').click(function(evt){
+                evt.preventDefault();
+                evt.stopPropagation();
+                $(evt.target).fadeOut();
+                $('.chartlinks').stop().slideUp({complete: function() {
+                    $('.showcharts').fadeIn();
+                    $('.baselinks').slideDown();
+                }});
+            });
+            $('.showcharts').click(function(evt){
+                evt.preventDefault();
+                evt.stopPropagation();
+                $(evt.target).fadeOut();
+                $('.baselinks').stop().slideUp({complete: function() {
+                    $('.showbases').fadeIn();
+                    $('.chartlinks').slideDown();
+                }});
+            });
+            $('.examplelinks a').each(function(i, elem) {
+                $(elem).click(function(evt) {
+                    $('#show').prop('src', $(evt.target).prop('href'));
+                    evt.stopPropagation();
+                    evt.preventDefault();
+                    $('.examplelinks a').removeClass('selected');
+                    $(evt.target).addClass('selected');
+                    // add link to source
+                    var urlparts = $(evt.target).prop('href').split('/');
+                    var file = urlparts[urlparts.length - 1];
+                    var sourceurl = 'https://github.com/nvd3-community/nvd3/blob/gh-pages/examples/' + file;
+                    $('#tosource').prop('href', sourceurl).fadeIn();
+                    // also set link to view only the example
+                    $('#showonlythis').prop('href', $(evt.target).prop('href'));
+                    // done
+                    $('#example_options').attr('style', '');
+                    return false;
+                });
+            });
+			$('.examplelinks a').click(function(){
+				var text = $(this).text();
+				$('#metric').text(text);				
+			});
+			
+			$('#firstReview').click(function(){$('#metric_desc').text("Description for First Reviews Completed metric...")});
+			$('#devWait').click(function(){$('#metric_desc').text("Description for Development Wait Time metric...")});
+			$('#compResp').click(function(){$('#metric_desc').text("Description for Complaint Response Time metric...")});
+			$('#qmatWT').click(function(){$('#metric_desc').text("Description for Qmatic Wait Time metric...")});
+			$('#qmatPT').click(function(){$('#metric_desc').text("Description for Qmatic Processing Time metric...")});
+			//$('#firstReview').css("background-color","#254E73");
+			
+        });
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+</head>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<style>
+       body {
+    font-family: "Lato";
+	}       
+    </style>
+</head>
+
+<body onload="document.getElementById('firstReview').focus()">
+
+<header>
+    <h1>Performance Metrics Dashboard</h1>
+</header>
+<div class="wrapper">
+    <nav>
+        <ul></ul>
+    </nav>	
+    <section>
+        <h2>
+            <span id="metric">First Reviews Completed</span>
+        </h2>
+        <p>
+            <span id="metric_desc">Description for First Reviews Completed...</span>
+        </p>
+        <div class="examplelinks chartlinks">
+			<a href="https://public.tableau.com/views/Test1_15610603304450/Sheet1?:embed=true:showVizHome=no#7.html" class="button" id="firstReview" onfocus="this.style.background='#254E73'" onblur="this.style.background='#3679B5'">First Reviews Completed</a>
+            <a href="https://public.tableau.com/views/com_res/Dashboard1?:showVizHome=no&:embed=true#5.html" class="button" id="devWait">Development Wait Time</a>
+			<a href="https://public.tableau.com/views/Test1_15610603304450/Sheet1?:embed=true:showVizHome=no#7.html" class="button" id="compResp">Complaint Response Time</a>
+            <a href="https://public.tableau.com/views/com_res/Dashboard1?:showVizHome=no&:embed=true#5.html" class="button" id="qmatWT">Qmatic Wait Time</a>
+            <a href="https://public.tableau.com/views/Test1_15610603304450/Sheet1?:embed=true:showVizHome=no#7.html" class="button" id="qmatPT">Qmatic Processing Time</a>
+        </div>			
+        <div id="show_wrapper"><iframe id="show"></iframe></div>
+    </section>
+</div>
+</body>
+</html>
