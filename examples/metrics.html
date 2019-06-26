@@ -59,11 +59,11 @@
 				$('#metric').text(text);				
 			});
 			
-			$('#firstReview').click(function(){$('#metric_desc').text("Description for First Reviews Completed metric...")});
-			$('#devWait').click(function(){$('#metric_desc').text("Description for Development Wait Time metric...")});
-			$('#compResp').click(function(){$('#metric_desc').text("Description for Complaint Response Time metric...")});
-			$('#qmatWT').click(function(){$('#metric_desc').text("Description for Qmatic Wait Time metric...")});
-			$('#qmatPT').click(function(){$('#metric_desc').text("Description for Qmatic Processing Time metric...")});
+			$('#firstReview').click(function(){$('#metric_desc').text("Average business days from filing date to first status of incomplete, objection, or approval")});
+			$('#devWait').click(function(){$('#metric_desc').text("Average business days from the current request date of a development inspection to the date of inspection")});
+			$('#compResp').click(function(){$('#metric_desc').text("Average business days from receipt of a complaint to a conducted field visit")});
+			$('#qmatWT').click(function(){$('#metric_desc').text("QMATIC Waiting Time: Average minutes from a customer service ticket being pulled to that ticket number being served. QMATIC Processing Time:  Average minutes from a customer service ticket being served to the close of the transaction.")});
+			//$('#qmatPT').click(function(){$('#metric_desc').text("")});
 			//$('#firstReview').css("background-color","#254E73");
 			
         });
@@ -100,7 +100,7 @@
             <a href="https://public.tableau.com/views/SL_Monthly_Update_Dev_Wait_Times/DevelopmentWaitTime?:embed=true:showVizHome=no.html" class="button" id="devWait">Development Wait Time</a>
 			<a href="https://public.tableau.com/views/SL_Monthly_ComplaintResponse/ComplaintResponseTime?:embed=true:showVizHome=no.html" class="button" id="compResp">Complaint Response Time</a>
             <a href="https://public.tableau.com/views/SL_Monthly_Update_QMATIC/QMATIC?:embed=true:showVizHome=no.html" class="button" id="qmatWT">Qmatic Service Levels</a>
-            <a href="https://public.tableau.com/views/Test1_15610603304450/Sheet1?:embed=true:showVizHome=no#7.html" class="button" id="qmatPT">Qmatic Processing Time</a>
+
         </div>			
         <div id="show_wrapper"><iframe id="show"></iframe></div>
     </section>
